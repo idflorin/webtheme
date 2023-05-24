@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Olivero sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+/**
+ * @file
+ * Functions to support theming in the Olivero theme.
+ */
+
+use Drupal\olivero\OliveroPreRender;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Render\Element;
+use Drupal\user\UserInterface;
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter for blocks.
+ */
+function webtheme_theme_suggestions_block_alter(&$suggestions, $variables) {
+
+  // Load theme suggestions for blocks from parent theme.
+  foreach ($suggestions as &$suggestion) {
+    $suggestion = str_replace('olivero_', 'webtheme_', $suggestion);
+  }
+}
+
+function webtheme_preprocess_field(&$variables) {
+  $element = $variables['element'];
+  $variables['view_mode'] = $element['#view_mode']; //Expose node view_mode to field templates
+
+  // add title atribute to field_tags and field_category reference fields
+  if (($variables['element']['#field_type'] == 'entity_reference') && ($variables['element']['#bundle'] == 'article' || $variables['element']['#bundle'] == 'story' || $variables['element']['#bundle'] == 'bookmark')) {
+    if (is_array($variables['items'])) {
+      foreach ($variables['items'] as &$item) {
+        if (isset($item['content']['#title'])) {
+         $item['content']['#options']['attributes']['title'] = $item['content']['#title'];
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function webtheme_preprocess_field__node__field_image__story(&$variables) {
+  if ($variables['element']['#view_mode'] == 'full') {
+    $image_style = \Drupal::entityTypeManager()->getStorage('image_style')->load('wide');
+    if ($image_style) {
+      foreach (Element::children($variables['items']) as $key) {
+        $variables['items'][$key]['content']['#image_style'] = 'wide';
+      }
+    }
+  }
+}
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function webtheme_preprocess_field__node__field_image__article(&$variables) {
+  if ($variables['element']['#view_mode'] == 'full') {
+    $image_style = \Drupal::entityTypeManager()->getStorage('image_style')->load('wide');
+    if ($image_style) {
+      foreach (Element::children($variables['items']) as $key) {
+        $variables['items'][$key]['content']['#image_style'] = 'wide';
+      }
+    }
+  }
+}
+
+#https://www.drupal.org/project/drupal/issues/3174774
+#https://www.drupal.org/files/issues/2020-10-05/3174774-5.patch
+function webtheme_preprocess_region(&$variables) {
+  if ($variables['region'] === 'sidebar') {
+    $variables['attributes']['class'][] = 'is-sticky';
+  }
+}
+
+function webtheme_preprocess_breadcrumb(&$variables){
+// add current node title to breadcrumb
+  if($variables['breadcrumb']){
+    $request = \Drupal::request();
+    $route_match = \Drupal::routeMatch();
+    $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+    if (!empty($page_title)) {
+      $variables['breadcrumb'][] = array(
+        'text' => $page_title
+      );
+      // Add cache context based on url.
+      $variables['#cache']['contexts'][] = 'url';
+    }
+  }
+}

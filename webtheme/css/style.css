@@ -1,0 +1,184 @@
+/**
+ * Place your custom CSS modifications here. a {color: #364a45} a:hover {color: #47625a;}
+ */
+/*a {color: #364a45}
+a:hover {color: #47625a;}
+a:focus {outline: solid 2px currentColor;outline-offset: 2px;}*/
+
+.site-branding--bg-white .site-branding__text a {color: #364a45;}
+.site-branding--bg-white .site-branding__text a:hover {color: #47625a;}
+
+.primary-nav__menu-link-inner:after{border-top: solid 5px #364a45;}
+
+.breadcrumb__link{color: #364a45;}
+
+.node__title a {color: #364a45;}
+.node__title a:hover, .node__title a:focus {color: #47625a;}
+
+.node__content .text-content a:not(.button) {color: #364a45;}
+
+.node--view-mode-teaser .node__meta a {color: #252529;}
+
+.field--tags__item a, .field--name-field-country .field__item a {color: #364a45;}
+.field--tags__item a:hover{color: #47625a;}
+
+.site-footer .block a {color: #9ea0a1;}
+.site-footer .block a:hover {color: #fff;}
+
+p {margin:0.5rem 0 1rem 0}
+.views-view-grid--horizontal > * {margin-bottom: 0.125rem;}
+
+img, .sl-wrapper .sl-image .sl-caption{
+  border-radius: 5px;
+}
+
+.node img{
+  margin: 0.5rem 0;
+  border-radius: 5px;
+}
+
+.block-system-main-block .node--view-mode-full .field--tags {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #f7f9fa;
+}
+
+.node--view-mode-teaser .node__title{margin-bottom: 0.5rem;}
+.field:not(:last-child) {margin-bottom: 0.5rem;}
+
+.site-footer .block-block-content p, .site-footer .block{letter-spacing: 0.02em; font-size: 0.875rem; line-height: 1.125rem;}
+
+@media (min-width: 43.75rem){
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+.view-similar-stories h2, .view-similar-stories h3 {font-size: 2.25rem;line-height: 3.375rem;}
+.view > * { margin-bottom: 1rem;}
+.main-content__container {
+    padding-top: 1rem;
+}
+.node--view-mode-teaser .node__meta {
+    margin-bottom: 0.25rem;
+}
+.node__meta {
+    margin-bottom: 0.25rem;
+}
+.wide-image {
+	margin-top: 0.25rem;
+}
+.text-content p, .cke_editable p {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+}
+
+@media (min-width: 62.5rem) {
+.region > * {
+    margin-bottom: 1rem;
+}
+.node__content {
+    padding-bottom: 1rem;
+}
+.node--view-mode-teaser {
+    margin-bottom: 1.5rem;
+}
+.node--view-mode-teaser .field {
+    margin-bottom: 0.25rem;
+}
+.sidebar-grid > .site-main {grid-column: 2 / 11;}
+}
+
+@media (min-width: 75rem){
+.site-footer__inner {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+}
+
+}
+/* sticky code start */
+@supports (position: sticky) {
+.region--sidebar.is-sticky {
+	position: sticky;
+	top: 36px;
+	-ms-grid-row-align: start;
+	align-self: start
+}
+}
+@supports (position: sticky) {
+	.toolbar-vertical.toolbar-fixed .region--sidebar.is-sticky, .toolbar-horizontal.toolbar-fixed .region--sidebar.is-sticky {
+	top: 75px;
+	}
+	.toolbar-vertical.toolbar-fixed .region--sidebar.is-sticky, .toolbar-horizontal.toolbar-fixed .region--sidebar.is-sticky {
+	top: 75px;
+	}
+}
+
+:root {--sticky-sidebar-offset: var(--sp2);}
+@media (--lg) {
+	&.is-sticky {
+		@supports (position: sticky) {
+			position: sticky;
+			inset-block-start: var(--sticky-sidebar-offset);
+			align-self: start;
+		}
+	}
+}
+
+@supports (position: sticky) {
+	/* Toolbar is fixed, and tray is either vertical or closed and horizontal. */
+	.toolbar-vertical.toolbar-fixed, .toolbar-horizontal.toolbar-fixed {
+		& .region--sidebar.is-sticky {
+			inset-block-start: calc(var(--toolbar-height) + var(--sticky-sidebar-offset));
+		}
+	}
+	/* Toolbar is fixed, and tray is open and horizontal. */
+	.toolbar-horizontal.toolbar-fixed.toolbar-tray-open {
+		& .region--sidebar.is-sticky {
+			inset-block-start: calc(var(--toolbar-tray-height) + var(--toolbar-height) + var(--sticky-sidebar-offset));
+		}
+	}
+}
+/* sticky code end */
+/* field--name-field-country start */
+.block-system-main-block .node--view-mode-full .field--name-field-country {
+    display: flex;
+    font-family: "metropolis", sans-serif;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #f7f9fa;
+    padding-right: 2.25rem;
+    padding-left: 2.25rem;
+}
+
+.field--name-field-country .field__label {
+    margin: 0;
+    letter-spacing: 0.02em;
+    color: #6e7172;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: "metropolis",sans-serif;
+}
+
+.field--name-field-country .field__item{
+    margin-right: 0.28125rem; 
+    margin-left: 0.28125rem;
+    display: flex;
+    margin-top: 0.00005rem;
+    margin-bottom: 0.28125rem;
+}
+.field--name-field-country .field__item a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    color: #fe2a3c;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
